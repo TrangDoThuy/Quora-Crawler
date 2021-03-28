@@ -51,7 +51,7 @@ def crawlTopicHierarchy(topic):
         file_topic_names.write(page_name[7:] + '\n')
 
         depth += 1
-        if(depth>1):
+        if(depth>3):
             break;
         # Record topic URL
         file_topic_urls.write(url + '\n')
@@ -181,7 +181,7 @@ def normalize(part):
     if("window." in part):
         index = part.find("window.")
         part = part[:index]
-    print(part)
+    #print(part)
     return part;
 
 # Crawl a question URL and save data into a csv file
@@ -190,10 +190,10 @@ def crawlQuestionData(main_topic):
     
     # Open question url file
     str_question_urls = "question_urls_"+main_topic+".txt"
-    file_question_urls = open(str_question_urls, mode = 'w')
+    file_question_urls = open(str_question_urls, mode = 'r')
     
     str_data_urls = "data_"+main_topic+".txt"
-    file_data = open(str_data_urls, mode = 'w')
+    file_data = open(str_data_urls, mode = 'w', encoding = 'utf-8')
     
     # file_question_urls = open(file, mode = 'r')
     # file_data = open("answers.txt", mode = 'w')
@@ -225,7 +225,10 @@ def crawlQuestionData(main_topic):
             
         html_source = browser.page_source
         browser.quit()
-                
+        
+        if("class=\"q-text puppeteer_test_question_title\" style=\"box-sizing: border-box;\"><span class=\"q-box qu-userSelect--text\" style=\"box-sizing: border-box;\"><span style=\"background: none;\">" not in html_source ):
+            current_line = file_question_urls.readline()
+            continue
             # Find question text
         question_text = html_source.split("class=\"q-text puppeteer_test_question_title\" style=\"box-sizing: border-box;\"><span class=\"q-box qu-userSelect--text\" style=\"box-sizing: border-box;\"><span style=\"background: none;\">")[1]
         question_text = question_text.split("</span>")[0]
@@ -238,13 +241,18 @@ def crawlQuestionData(main_topic):
         # Split html to parts
         split_html = html_source.split('<div class="q-relative spacing_log_answer_content puppeteer_test_answer_content" style="box-sizing: border-box; position: relative;">')
         if (DEBUG): print ("Length of split_html:{0}".format(len(split_html)))
-        for i in range(1, len(split_html)):
-            print("****") 
+        if(len(split_html)<30):
+            current_line = file_question_urls.readline()
+            continue
+        for i in range(1, len(split_html)-2):
+            if(i>10):
+                break
+            #print("****") 
             part = split_html[i]
             part = normalize(part)
-            print("******")
+            #print("******")
             answer_list.append(part)
-            file_data.write(part+'\n\n')
+            file_data.write(part+"\n\n")
         current_line = file_question_urls.readline()
 
     file_question_urls.close()
@@ -262,3 +270,4 @@ def main():
     return 0
 
 if __name__ == "__main__": main()
+
