@@ -4,6 +4,8 @@
 ## Description
 Kossie is an online coaching platform (Beta version will be launched on 19th March) that matches ‘stressed-out’ millennials with suitable coaches, based on their stress. Our mission is to combine intelligent technologies such as AI and machine learning into our platform, so we can make mental health more accessible and affordable.
 
+[Link to Kossie](https://kossie.co.uk/)
+
 ## Objective
 We currently use text classification as part of our matching process. When users visit our platform, they are usually required to submit their struggle in text, then it allows the our ML model to predict which coach category – relationship, sex, mental health or career is the most suitable, such as relationship struggle – relationship coach etc.
 
