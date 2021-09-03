@@ -1,63 +1,44 @@
-Quora-Crawler
-=============
-
-This Python script makes use of the Selenium and chromedriver to crawl Quora.com. It starts at a specified root 
-topic and traverses the child topics to build a hierarchy tree. It will first crawl and scrape all the questions within
-all the topics. Meanwhile, it maintains a list of users who have either asked a question, answered, or upvoted. After
-crawling the questions, it will crawl and scrape all the users.
+# Text Classification for online coaching platform Kossie
 
 
-####Requirements
-Following needs to be installed for the script to run.
+## Description
+Kossie is an online coaching platform (Beta version will be launched on 19th March) that matches ‘stressed-out’ millennials with suitable coaches, based on their stress. Our mission is to combine intelligent technologies such as AI and machine learning into our platform, so we can make mental health more accessible and affordable.
 
--selenium https://code.google.com/p/selenium/
+## Objective
+We currently use text classification as part of our matching process. When users visit our platform, they are usually required to submit their struggle in text, then it allows the our ML model to predict which coach category – relationship, sex, mental health or career is the most suitable, such as relationship struggle – relationship coach etc.
 
--chromedriver https://code.google.com/p/selenium/wiki/ChromeDriver
+## Project detail
+![image](https://user-images.githubusercontent.com/30380242/131947512-0549f597-ef6a-4bb0-a5f9-4b9bc35ec7e9.png)
 
--beautifulsoup http://www.crummy.com/software/BeautifulSoup/
+
+![image](https://user-images.githubusercontent.com/30380242/131947542-ca8593e6-3577-4365-97c6-2c7a31505fa9.png)
 
 
-####Outputs
+![image](https://user-images.githubusercontent.com/30380242/131947578-22b9432d-edcf-42dc-a292-511a225d7795.png)
 
-For a given root topic, the script will extract the hierarchy of all the sub-topics and save it to topic_names.txt in the following format.
 
-```
-Level 1 Topic 1
-Level 1 Topic 1 Level 2 Topic 1-1
-Level 1 Topic 1 Level 2 Topic 1-1 Level 3 Topic 1-1-1
-Level 1 Topic 1 Level 2 Topic 1-1 Level 3 Topic 1-1-2
-Level 1 Topic 1 Level 2 Topic 1-1 Level 3 Topic 1-1-3
-Level 1 Topic 1 Level 2 Topic 1-1 Level 3 Topic 1-2-1
-Level 1 Topic 1 Level 2 Topic 1-1 Level 3 Topic 1-2-2
-Level 1 Topic 2
-Level 1 Topic 2 Level 2 Topic 2-1
-Level 1 Topic 2 Level 2 Topic 2-2
-Level 1 Topic 2 Level 2 Topic 2-2 Level 3 Topic 2-2-1
-.
-.
-```
-For each topic, the script will crawl and record all the questions under it. Then, the script will crawl each question and extract the following data and save it to answers.csv in the following format.
+![image](https://user-images.githubusercontent.com/30380242/131947609-f6cd7e37-2a4a-461b-beba-7154509fb196.png)
 
-```
-answer_id, question_id, user_id, date, number_of_upvotes, {{{users who upvoted}}}, {{{topics}}}, current_topic, {{{question_text}}} , {{{answer_text}}}
 
-where...
-answer_id = a unique global identifier for answers and is question_url-user_id 
-question_id = a unique identifier of each question and is the question URL
-user_id = the URL of the responder's page
-{{{Users who voted}}} = user_id of ones who upvoted the answer, i.e. {{{user1_id, user2_id, etc.}}}
-{{{topics}}} = the list of topics tagged on a question, separated with a comma
-current_topic = the topic under which question is found
-{{{question_text}}} = the question in plain text.
-{{{answer_text}}} = the body of the answer in plain text.
-```
+![image](https://user-images.githubusercontent.com/30380242/131947654-1a85cf4e-b445-4213-9456-fa98b69a8082.png)
 
-After crawling all the questions-answers, the script will crawl all the users encountered previously. The user data will be saved in users.csv in the following format.
 
-```
-user_id, number_of_topics, number_of_blogs, number_of_questions, number_of_answers, number_of_edits, {{{followers}}}, {{{following}}}
+![image](https://user-images.githubusercontent.com/30380242/131947737-a2edf11b-c4f2-44c1-a3a7-dc5e0edc171b.png)
 
-where...
-{{followers}}} = comma-separated lists of user_ids of those who follow this user
-{{{following}}} = comma-separated lists of user_ids of those who this user follows
-```
+
+![image](https://user-images.githubusercontent.com/30380242/131947760-745d3a1f-af01-44e1-bf12-7200e5c7f156.png)
+
+
+![image](https://user-images.githubusercontent.com/30380242/131947788-6b55d3ea-0060-46eb-a662-3e24425c44c5.png)
+
+
+![image](https://user-images.githubusercontent.com/30380242/131947812-e353a7cb-05bc-4c83-9b06-c57a2b63c7c2.png)
+
+
+![image](https://user-images.githubusercontent.com/30380242/131947832-78ed197e-37b9-4872-b2b1-b5e5e37d1418.png)
+
+
+![image](https://user-images.githubusercontent.com/30380242/131947860-9dc55eb3-880e-4cb8-a155-edc433107e2d.png)
+
+
+
